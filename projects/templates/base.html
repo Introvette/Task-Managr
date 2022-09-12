@@ -14,16 +14,22 @@
         <header>
             <nav>
                 <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
                     {% if user.is_authenticated %}
                         <li>
                             <a href="{% url 'list_projects' %}">My Projects</a>
                         </li>
-
+                    {% else %}
+                        <li>
+                            <a href="{% url 'login' %}">Login</a>
                         </li>
                     {% endif %}
                 </ul>
             </nav>
         </header>
-        {% block content %} {% endblock content %}
+        {% block content %}
+        {% endblock content %}
     </body>
 </html>
