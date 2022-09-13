@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "markdownify.apps.MarkdownifyConfig",
     "tasks.apps.TasksConfig",
     "projects.apps.ProjectsConfig",
     "accounts.apps.AccountsConfig",
@@ -129,3 +130,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "login"
+
+MARKDOWNIFY = {"default": {"BLEACH": False}}
