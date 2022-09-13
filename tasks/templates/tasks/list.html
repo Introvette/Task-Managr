@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content%}
+
+<main>
+    <div>
+        <h1>My Tasks</h1>
+        {% if task_list|length == 0 %}
+            <p>You have no tasks</p>
+
+
+        {% else %}
+        <table>
+        <thead>
+
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Is completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for assigned in task_list %}
+                <tr>
+                    <td>{{ assigned.name }}</td>
+                    <td>{{ assigned.start_date }}</td>
+                    <td>{{ assigned.end_date }}</td>
+                    <td>
+                        {% if is_completed|length == 0 %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="is_completed" value="True">
+                                <button>Complete</button>
+                        {% else %}
+                            {{ assigned.is_completed }}
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    </div>
+    </main>
+    {% endblock content %}
