@@ -2,7 +2,6 @@
     <main>
         <div>
             <h1>My Projects</h1>
-
             <table>
                 <tr>
                     <th>Name</th>
@@ -11,7 +10,7 @@
                 {% for project in project_list %}
                     <tr>
                         <td>
-                            {{project.name}}
+                            <a href="{% url 'show_project' project.id %}">{{project.name}}</a>
                         </td>
                         <td>{{project.tasks.all|length}}</td>
                     </tr>

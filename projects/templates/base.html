@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,11 +18,17 @@
                     </li>
                     {% if user.is_authenticated %}
                         <li>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </li>
+                        <li>
                             <a href="{% url 'list_projects' %}">My Projects</a>
                         </li>
                     {% else %}
                         <li>
                             <a href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'signup' %}">Sign up</a>
                         </li>
                     {% endif %}
                 </ul>
