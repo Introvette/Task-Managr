@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
-<main>
-    <div>
-        <h1>Signup</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <type="text" name="username">
+    <main>
+        <div>
+            <h1>Signup</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <type="text" name="username">
                 <type="text" name="password1">
-                    <type="text" name="password2">
-                        <button>Signup</button>
-         </form>
-     </div>
-</main>
-
+                <type="text" name="password2">
+                <button>Signup</button>
+            </form>
+        </div>
+    </main>
 {% endblock content %}

@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content%}
+{% extends 'base.html' %}
+{% block content %}
     <main>
         <div>
             <h1>My Tasks</h1>
@@ -11,9 +12,9 @@
                 </tr>
                 {% for task in task_list %}
                     <tr>
-                        <td>{{task.name}}</td>
-                        <td>{{task.start_date}}</td>
-                        <td>{{task.due_date}}</td>
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.start_date }}</td>
+                        <td>{{ task.due_date }}</td>
                         <td>
                             {% if task.is_completed == False %}
                                 <form method="post" action="{% url 'complete_task' task.id %}">
@@ -21,12 +22,14 @@
                                     <input type="hidden" name="is_completed" value="True" />
                                     <button>Complete</button>
                                 </form>
-                            {% else %} Done {% endif %}
+                            {% else %}
+                                Done
+                            {% endif %}
                         </td>
                     </tr>
                 {% empty %}
                     <p>You have no tasks</p>
-                {% endfor%}
+                {% endfor %}
             </table>
         </div>
     </main>
