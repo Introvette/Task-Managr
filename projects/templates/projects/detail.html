@@ -3,20 +3,21 @@
     {% load markdownify %}
     <main>
         <div>
-            <h1>{{ project.name }}</h1>
-            <p>{{ project.description|markdownify }}</p>
-            <h2>Tasks</h2>
+            <h1 style="margin-left: 30px">{{ project.name }}</h1>
+            <h2 style="margin-left: 30px">Tasks</h2>
             <p>
-                <a href="{% url 'create_task' %}">Create a new task</a>
+                <button class="btn-primary"><a href="{% url 'create_task' %}">Create a new task</a></button>
             </p>
             {% if project.tasks.all|length == 0 %}<p>This project has no tasks</p>{% endif %}
-            <table>
+            <table class="styled-table">
                 <thead>
+                    <tr>
                     <th>Name</th>
                     <th>Assignee</th>
                     <th>Start date</th>
                     <th>Due date</th>
                     <th>Is completed</th>
+                </tr>
                 </thead>
                 <tbody>
                     <tr>

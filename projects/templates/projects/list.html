@@ -4,19 +4,19 @@
         <div>
             <h1>My Projects</h1>
             <p>
-                <a href="{% url 'create_project' %}">Create a new project</a>
+               <button class="btn-primary"><a href="{% url 'create_project' %}">Create a new project</a></button>
             </p>
-            <table>
+            <table class="styled-table">
                 <tr>
-                    <th>Name</th>
-                    <th>Number of tasks</th>
+                    <th style="text-align: left">Name</th>
+                    <th style="text-align: left">Number of tasks</th>
                 </tr>
                 {% for project in project_list %}
                     <tr>
                         <td>
-                            <a href="{% url 'show_project' project.id %}">{{ project.name }}</a>
+                           <button class="button"><strong> <a href="{% url 'show_project' project.id %}">{{ project.name }}</a></strong></button>
                         </td>
-                        <td>{{ project.tasks.all|length }}</td>
+                        <td style="text-align: center">{{ project.tasks.all|length }}</td>
                     </tr>
                 {% empty %}
                     <p>You are not assigned to any projects</p>

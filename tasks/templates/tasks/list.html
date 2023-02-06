@@ -1,36 +1,41 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <main>
-        <div>
-            <h1>My Tasks</h1>
-            <table>
+<main>
+    <div>
+        <h1>My Tasks</h1>
+        {% if tasklist %}
+        <table class="styled-table">
+            <thead>
                 <tr>
                     <th>Name</th>
                     <th>Start date</th>
                     <th>End date</th>
                     <th>Is completed</th>
                 </tr>
-                {% for task in task_list %}
-                    <tr>
-                        <td>{{ task.name }}</td>
-                        <td>{{ task.start_date }}</td>
-                        <td>{{ task.due_date }}</td>
-                        <td>
-                            {% if task.is_completed == False %}
-                                <form method="post" action="{% url 'complete_task' task.id %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="is_completed" value="True" />
-                                    <button>Complete</button>
-                                </form>
-                            {% else %}
-                                Done
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% empty %}
-                    <p>You have no tasks</p>
-                {% endfor %}
-            </table>
-        </div>
-    </main>
+            </thead>
+            {% for task in tasklist %}
+            <tbody>
+                <tr>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.start_date|date }}</td>
+                    <td>{{ task.due_date|date }}</td>
+                    <td>
+                        {% if task.is_completed %}Done
+                        {% else %}
+                        <form class="tasks" type="hidden" method="post" action="{% url 'complete_task' task.id %}">
+                            {% csrf_token %}
+                           <input type="hidden" name="is_completed" value="True">
+                           <button style="margin-right: 60px; margin-left: -20px; margin-top: -10px" class="button">Complete</button>
+                        </form>
+                    </td>{% endif %}
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p>You have no tasks</p>
+        {% endif %}
+    </div>
+</main>
 {% endblock content %}
